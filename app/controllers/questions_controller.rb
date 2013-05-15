@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:id])
     question.update_attributes(params[:question])
     if question.save
-      flash[:notice] = "Question saved"
+      flash[:success] = "Question saved"
     end
     redirect_to root_path
   end
