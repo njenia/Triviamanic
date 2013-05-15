@@ -1,0 +1,9 @@
+<div>
+  #<%= question.id %>
+</div>
+<div>
+  <%= truncate(question.instructions, :length => 30, :separator => ' ') %>
+</div>
+<div>
+  <%= link_to "Edit", edit_user_question_path(current_user.id, question.id) %>
+</div>

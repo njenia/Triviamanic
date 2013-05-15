@@ -1,4 +1,18 @@
-Triviamania::Application.routes.draw do
+Triviamanic::Application.routes.draw do
+
+  get "sessions/new"
+  get "log_out" => "sessions#destroy", :as => "log_out", via: :delete
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  resources :users do
+    resources :questions
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+
+  resources :question_images
+
+  root :to => 'static_pages#main'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

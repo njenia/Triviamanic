@@ -1,0 +1,23 @@
+<% if current_user %>
+    <h1>Welcome, <%= current_user.username %></h1>
+
+    <div class="pull-right"><%= button_to "Add a question",
+                                          new_user_question_path(@user),
+                                          :method => "get",
+                                          :class => 'btn btn-large btn-primary' %>
+    </div>
+
+    <h3>Your questions (<%= current_user.questions.count %>)</h3>
+    <div class="container">
+      <ul class="thumbnails">
+        <% current_user.questions.each do |question| %>
+            <li class="span2">
+              <%= render "questions/question_item", :question => question %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% else %>
+    <h1>Welcome, stranger</h1>
+
+<% end %>

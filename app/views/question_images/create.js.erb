@@ -1,0 +1,2 @@
+$('#question-img-container').append('<%= escape_javascript(image_tag @question_image.image.url, :class => 'draggable') %>');
+$(".draggable").draggable({ containment:"parent" });

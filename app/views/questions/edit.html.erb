@@ -1,0 +1,22 @@
+<h1>Edit question #<%= @question.id %></h1>
+
+<%= form_tag "/question_images", :multipart => true, :remote => true, :id => "file_form", :method => :post do %>
+    <%= hidden_field_tag :question_id, @question.id %>
+    <%= file_field_tag :image, :id => "image_upload" %>
+    <%= submit_tag "Add image" %>
+<% end %>
+
+<%= form_for([@user, @question], method: 'PUT') do |f| %>
+    <p>
+      <%= f.label :instructions %>
+      <%= f.text_area :instructions, :style => 'width: 400px; height: 100px;' %>
+    </p>
+    <div id="question-img-container">
+        <% @question.question_images.each do |question_image| %>
+            <%= image_tag question_image.image.url, :class => 'draggable' %>
+        <% end %>
+    </div>
+    <p>
+      <%= f.submit "Save question", class: "btn btn-large btn-primary" %>
+    </p>
+<% end %>
