@@ -1,0 +1,42 @@
+<h1>Edit quiz <%= @quiz.id %></h1>
+
+<div class="container">
+  <ul class="thumbnails">
+    <li class="span4">
+      <h3>Your questions</h3>
+      <div class="container">
+        <ul class="thumbnails">
+          <% current_user.questions.each do |question| %>
+              <li class="span2">
+                <%= render "questions/question_item", :question => question %>
+                <%= button_to_function  "Add to category ->", 'addToCategory(' + @quiz.id.to_s + ',' + question.id.to_s + ')',
+                             :class => 'btn btn-medium btn-primary' %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+    <li class="span8">
+      <h3>Categories</h3>
+      <%= form_tag '/categories', :remote => true, :method => 'post' do %>
+          <%= hidden_field_tag :quiz_id, @quiz.id %>
+          <%= text_field_tag :new_category_name, nil, :placeholder => 'New category' %>
+          <%= submit_tag 'Add category' %>
+      <% end %>
+      <ul id="category_tabs" class="nav nav-tabs">
+        <% @quiz.categories.each do |category| %>
+            <li><a href="#<%= category.name %>" data-toggle="tab"><%= category.name %></a></li>
+        <% end %>
+      </ul>
+      <div id="categories_tab_content" class="tab-content">
+        <% @quiz.categories.each do |category| %>
+            <div class="tab-pane" id="<%= category.name %>">
+              <% category.quiz_questions.each do |quiz_question| %>
+                  <%= render "questions/question_item", :question => quiz_question.question %>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>

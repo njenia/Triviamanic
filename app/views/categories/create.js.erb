@@ -1,0 +1,2 @@
+$('#category_tabs .active').removeClass('active');
+$('#category_tabs').append('<li class="active"><a href="#<%= escape_javascript @category.name %>" data-toggle="tab"><%= escape_javascript @category.name %></a></li>')

@@ -3,4 +3,5 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
   has_many :question_images
+  has_many :quiz_questions
 end

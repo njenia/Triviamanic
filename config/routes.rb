@@ -11,6 +11,12 @@ Triviamanic::Application.routes.draw do
 
   resources :question_images
 
+  resources :quizzes do
+    resources :quiz_questions, only: [:create, :destroy]
+  end
+
+  resources :categories, only: [:create, :destroy]
+
   root :to => 'static_pages#main'
 
   # The priority is based upon order of creation:

@@ -7,12 +7,21 @@
                                           :class => 'btn btn-large btn-primary' %>
     </div>
 
+    <div class="pull-right"><%= button_to "Add a quiz",
+                                          new_quiz_path,
+                                          :method => "get",
+                                          :class => 'btn btn-large btn-primary' %>
+    </div>
+
     <h3>Your questions (<%= current_user.questions.count %>)</h3>
     <div class="container">
       <ul class="thumbnails">
         <% current_user.questions.each do |question| %>
             <li class="span2">
               <%= render "questions/question_item", :question => question %>
+              <div>
+                <%= link_to "Edit", edit_user_question_path(current_user.id, question.id) %>
+              </div>
             </li>
         <% end %>
       </ul>
