@@ -4,13 +4,16 @@
   <ul class="thumbnails">
     <li class="span4">
       <h3>Your questions</h3>
+
       <div class="container">
         <ul class="thumbnails">
           <% current_user.questions.each do |question| %>
               <li class="span2">
                 <%= render "questions/question_item", :question => question %>
-                <%= button_to_function  "Add to category ->", 'addToCategory(' + @quiz.id.to_s + ',' + question.id.to_s + ')',
-                             :class => 'btn btn-medium btn-primary' %>
+                <% if not is_question_in_quiz(@quiz, question) %>
+                    <%= button_to_function "Add to category ->", 'addToCategory(' + @quiz.id.to_s + ',' + question.id.to_s + ')',
+                                           :class => 'btn btn-medium btn-primary' %>
+                <% end %>
               </li>
           <% end %>
         </ul>

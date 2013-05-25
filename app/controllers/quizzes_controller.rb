@@ -9,4 +9,12 @@ class QuizzesController < ApplicationController
   def edit
     @quiz = Quiz.find(params[:id])
   end
+
+  def update
+    @quiz = Quiz.find(params[:id])
+    @quiz.update_attributes(params[:quiz])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

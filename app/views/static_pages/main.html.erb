@@ -13,6 +13,22 @@
                                           :class => 'btn btn-large btn-primary' %>
     </div>
 
+    <!-- Quizzes -->
+    <h3>Your quizzes (<%= current_user.quizzes.count %>)</h3>
+    <div class="container">
+      <ul class="thumbnails">
+        <% current_user.quizzes.each do |quiz| %>
+            <li class="span2">
+              <%= render "quizzes/quiz_item", :quiz => quiz %>
+              <div>
+                <%= link_to "Edit", edit_quiz_path(quiz.id) %>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- Questions -->
     <h3>Your questions (<%= current_user.questions.count %>)</h3>
     <div class="container">
       <ul class="thumbnails">
