@@ -6,11 +6,11 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if current_user %>
-              <li><%= link_to "Log out", log_out_path %></li>
+              <li><%= link_to "Log out", destroy_user_session_path %></li>
               <li><%= link_to gravatar_for(current_user, 25), "users/#{current_user.id.to_s}" %></li>
           <% else %>
-              <li><%= link_to "Sign up", sign_up_path %></li>
-              <li><%= link_to "log in", log_in_path %></li>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to "log in", new_user_session_path %></li>
           <% end %>
         </ul>
       </nav>
