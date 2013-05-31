@@ -11,11 +11,11 @@ Triviamanic::Application.routes.draw do
 
   resources :question_images
 
-  resources :quizzes do
-    resources :quiz_questions, only: [:create, :destroy]
+  resources :quizzes, :shallow => true do
+    resources :categories do
+      resources :quiz_questions, :only => [:create, :destroy]
+    end
   end
-
-  resources :categories, only: [:create, :destroy]
 
   root :to => 'static_pages#main'
 

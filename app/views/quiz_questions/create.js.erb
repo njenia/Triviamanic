@@ -1,1 +1,1 @@
-$('#categories_tab_content .active').append('<%= escape_javascript render 'questions/question_item', :question => @question %>');
+$('#categories_tab_content .active').append('<div id="quiz_question_<%= escape_javascript @quiz_question.id.to_s %>"><%= escape_javascript render 'questions/question_item', :question => @question %></div>');

@@ -41,19 +41,16 @@ ActiveRecord::Schema.define(:version => 20130524231720) do
 
   create_table "quiz_questions", :force => true do |t|
     t.integer  "question_id"
-    t.integer  "quiz_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "category_id"
   end
 
   add_index "quiz_questions", ["question_id"], :name => "index_quiz_questions_on_question_id"
-  add_index "quiz_questions", ["quiz_id"], :name => "index_quiz_questions_on_quiz_id"
 
   create_table "quizzes", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "quiz_questions_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 

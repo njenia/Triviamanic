@@ -1,2 +1,7 @@
+// Add the new active tab
 $('#category_tabs .active').removeClass('active');
-$('#category_tabs').append('<li class="active"><a href="#<%= escape_javascript @category.name %>" data-toggle="tab"><%= escape_javascript @category.name %></a></li>')
+$('#category_tabs').append('<li id="category<%= escape_javascript @category.id.to_s %>" class="active"><a href="#<%= escape_javascript @category.name %>" data-toggle="tab"><%= escape_javascript @category.name %></a></li>')
+
+// Add the new active tab content
+$('#categories_tab_content').removeClass('active');
+$('#categories_tab_content').append('<div class="tab-pane active" id="<%= @category.name %>"><% @category.quiz_questions.each do |quiz_question| %><%= escape_javascript render "questions/question_item", :question => quiz_question.question %><% end %></div>');

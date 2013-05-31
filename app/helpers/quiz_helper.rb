@@ -1,5 +1,5 @@
 module QuizHelper
   def is_question_in_quiz(quiz, question)
-    not quiz.quiz_questions.where(:question_id => question.id).first.nil?
+    not QuizQuestion.joins(:category => :quiz).where('quizzes.id' => quiz.id, 'quiz_questions.question_id' => question.id).first.nil?
   end
 end
