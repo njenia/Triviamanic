@@ -1,9 +1,16 @@
 Triviamanic::Application.routes.draw do
 
   devise_for :users do
-    resources :questions
+    resources :quizzes
   end
 
+  resources :quizzes do
+    resources :categories
+  end
+
+  resources :categories do
+    resources :questions
+  end
 
   #resources :sessions, only: [:new, :create, :destroy]
 

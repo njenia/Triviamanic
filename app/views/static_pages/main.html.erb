@@ -2,8 +2,12 @@
     <h1>Welcome, <%= current_user.email %></h1>
 
     <div class="pull-right"><%= button_to "Add a question",
-                                          new_user_question_path(@user),
-                                          :method => "get",
+                                          "#",
+                                          :class => 'btn btn-large btn-primary' %>
+    </div>
+    <div class="pull-right"><%= button_to "Add a quiz",
+                                          new_quiz_path,
+                                          :method => :get,
                                           :class => 'btn btn-large btn-primary' %>
     </div>
 
