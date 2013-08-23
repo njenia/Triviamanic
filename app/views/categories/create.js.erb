@@ -1,0 +1,14 @@
+var quiz_table_category_column = $("<div />", {
+    "class": "quiz-table-category-column"
+});
+var quiz_table_category_header = $("<div />", {
+    "class": "quiz-table-category-header"
+});
+quiz_table_category_header.append("<h3><%= @category.name %></h3>");
+quiz_table_category_column.append(quiz_table_category_header);
+quiz_table_category_column.append('<div>Add question</div>');
+quiz_table_category_column.append("<div><%=j image_tag 'pale_green_plus.png', :alt => 'Add question',
+                :mouseover => image_path('green_plus.png'), :size => "24x24" %></div>");
+
+$('#quiz-table').append(quiz_table_category_column);
+

@@ -8,9 +8,10 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.create(:user_id => params[:user_id])
-    @user = User.find(params[:user_id])
-    redirect_to edit_user_question_path(@user, @question)
+    @category = Category.find(params[:category_id])
+    @question = Question.create(:category_id => @category.id)
+
+    redirect_to edit_category_question_path(@category, @question)
   end
 
   def create
@@ -21,7 +22,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
-    @user = User.find(params[:user_id])
+    @category = Category.find(params[:category_id])
   end
 
   def update
@@ -33,3 +34,4 @@ class QuestionsController < ApplicationController
     redirect_to root_path
   end
 end
+

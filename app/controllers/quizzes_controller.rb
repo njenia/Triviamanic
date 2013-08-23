@@ -7,6 +7,7 @@ class QuizzesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quizzes }
+
     end
   end
 
@@ -24,12 +25,9 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   # GET /quizzes/new.json
   def new
-    @quiz = Quiz.new
+    @quiz = Quiz.create(:user_id => current_user.id)
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @quiz }
-    end
+    redirect_to edit_quiz_path(@quiz)
   end
 
   # GET /quizzes/1/edit
@@ -81,3 +79,4 @@ class QuizzesController < ApplicationController
     end
   end
 end
+

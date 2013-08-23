@@ -40,15 +40,15 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(:name => params[:category], :quiz_id => params[:quiz_id])
 
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render json: @category, status: :created, location: @category }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -81,3 +81,4 @@ class CategoriesController < ApplicationController
     end
   end
 end
+

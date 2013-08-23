@@ -1,22 +1,23 @@
 <% if current_user %>
     <h1>Welcome, <%= current_user.email %></h1>
 
-    <div class="pull-right"><%= button_to "Add a question",
-                                          "#",
-                                          :class => 'btn btn-large btn-primary' %>
-    </div>
-    <div class="pull-right"><%= button_to "Add a quiz",
+
+    <div class="pull-right"><%= link_to "Add a quiz",
                                           new_quiz_path,
-                                          :method => :get,
+                                          :method => "get",
+                                          :form => {
+                                            :user_id => current_user.id
+                                          },
                                           :class => 'btn btn-large btn-primary' %>
     </div>
 
-    <h3>Your questions (<%= current_user.questions.count %>)</h3>
+    <h3>Your Quizzes (<%= current_user.quizzes.count %>)</h3>
     <div class="container">
       <ul class="thumbnails">
-        <% current_user.questions.each do |question| %>
+        <% current_user.quizzes.each do |quiz| %>
             <li class="span2">
-              <%= render "questions/question_item", :question => question %>
+              <div>Quiz #<%= quiz.id %></div>
+              <div><a href="<%= edit_quiz_path(quiz) %>">edit</a></div>
             </li>
         <% end %>
       </ul>
@@ -25,3 +26,4 @@
     <h1>Welcome, stranger</h1>
 
 <% end %>
+
