@@ -80,5 +80,18 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reorder
+    points = 100
+    params[:question_ids].each do |question_id|
+      Question.find(question_id).update_attributes(:points => points)
+      points += 100
+    end
+
+    respond_to do |format|
+      format.html {  }
+      format.json { head :no_content }
+    end
+  end
 end
 

@@ -12,27 +12,41 @@
 
   .quiz-table-category-column {
     float: left;
-    padding-right: 50px;
+    width: 20%;
     text-align: center;
   }
 
   .quiz-table-question {
-    border: 1px solid black;
+    outline: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    height: 70px;
+    background: #A3FFA3a;
+    cursor: move;
+  }
+
+  .quiz-table-add-question {
+    margin: 5px;
+    outline: 1px dashed black;
   }
 </style>
 
 <div class="quiz-table" id="quiz-table">
 <% @quiz.categories.each do |cat| %>
-  <div class="quiz-table-category-column">
+  <div class="quiz-table-category-column" data-category-id="<%= cat.id %>">
     <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
-    <% cat.questions.each do |question| %>
-      <div class="quiz-table-question">#<%= question.id %></div>
-    <% end %>
-    <div>
-      <div><%= link_to "Add question", new_category_question_path(cat), :method => :get %></div>
-      <div><%= image_tag 'pale_green_plus.png', :alt => 'Add question',
-                :mouseover => image_path('green_plus.png'), :size => "24x24" %></div>
-    </div>
+    <ul class="no-bullets-ul sortable-questions">
+      <% cat.questions.order("points ASC").each do |question| %>
+        <li class="quiz-table-question" data-question-id='<%= question.id %>'>
+          <div class="question-points"><%= question.points %></div>
+          <div><%= question.title %></div>
+          <div><%= link_to "edit", edit_category_question_path(cat, question) %></div>
+        </li>
+      <% end %>
+    </ul>
+    <a href="<%= new_category_question_path(cat) %>" data-method="get"><div class="quiz-table-add-question">
+      + Add question
+    </div></a>
   </div>
 <% end %>
 </div>

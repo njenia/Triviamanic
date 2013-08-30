@@ -1,5 +1,5 @@
 $(function () {
-    $(".draggable").draggable({ containment:"parent" });
+    $(".question-image").sortable();
 
 });
 
