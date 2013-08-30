@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#draggable { width: 150px; height: 150px; padding: 0.5em; }
+// #draggable { width: 150px; height: 150px; padding: 0.5em; }
 
-#question-img-container { width: 100%; height: 600px; border-style: dashed; border-width: 0.2em; }
+#question-img-container {
+    width: 90%;
+    height: 300px;
+    border-style: dashed;
+    border-width: 0.2em;
+}
+
+.question-image {
+    height: 100%;
+}
+

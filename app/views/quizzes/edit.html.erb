@@ -1,7 +1,7 @@
 <h1>Editing quiz #<%= @quiz.id %></h1>
 
 <%= form_tag quiz_categories_path(@quiz), :method => 'post', :remote => true do %>
-  <%= text_field_tag 'category', nil, :placeholder => 'Category name' %>
+  <%= text_field_tag 'category', nil, :placeholder => 'Category' %>
   <%= submit_tag 'Add' %>
 <% end %>
 
@@ -28,6 +28,7 @@
   .quiz-table-add-question {
     margin: 5px;
     outline: 1px dashed black;
+    background: #78FF52;
   }
 </style>
 
@@ -39,8 +40,10 @@
       <% cat.questions.order("points ASC").each do |question| %>
         <li class="quiz-table-question" data-question-id='<%= question.id %>'>
           <div class="question-points"><%= question.points %></div>
-          <div><%= question.title %></div>
-          <div><%= link_to "edit", edit_category_question_path(cat, question) %></div>
+          <div><%= ((question.title.nil? or question.title.empty?) ?
+                     "Question #" + question.id.to_s : question.title) %></div>
+          <div><%= link_to "edit",
+                          edit_category_question_path(cat, question) %></div>
         </li>
       <% end %>
     </ul>
