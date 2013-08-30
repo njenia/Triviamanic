@@ -9,7 +9,11 @@ class QuestionsController < ApplicationController
 
   def new
     @category = Category.find(params[:category_id])
-    @question = Question.create(:category_id => @category.id)
+    max_points_in_category = @category.questions.maximum("points")
+    if max_points_in_category == nil
+      max_points_in_category = 0
+    end
+    @question = Question.create(:category_id => @category.id, :points => max_points_in_category + 100)
 
     redirect_to edit_category_question_path(@category, @question)
   end
@@ -23,6 +27,7 @@ class QuestionsController < ApplicationController
   def edit
     @question = Question.find(params[:id])
     @category = Category.find(params[:category_id])
+    @time_limits = [["10s", 10], ["30s", 30], ["1m", 60], ["3m", 180], ["5m", 300], ["10m", 600]]
   end
 
   def update
@@ -31,7 +36,7 @@ class QuestionsController < ApplicationController
     if question.save
       flash[:success] = "Question saved"
     end
-    redirect_to root_path
+    redirect_to edit_quiz_path(question.category.quiz)
   end
 end
 
