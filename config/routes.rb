@@ -19,6 +19,12 @@ Triviamanic::Application.routes.draw do
     end
   end
 
+  resources :games
+
+  resources :game_player_groups
+
+  resources :player_group_users
+
   #resources :sessions, only: [:new, :create, :destroy]
 
   resources :question_images

@@ -1,0 +1,2 @@
+class GamePlayerGroupController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class PlayerGroupUserController < ApplicationController
+end
