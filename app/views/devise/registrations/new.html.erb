@@ -1,0 +1,19 @@
+<h2>Join Triviamanic</h2>
+  <div class="centerilized-box">
+    <%= form_for @user, :url => user_registration_path do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      <div>OR</div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      <div>
+        <%= f.submit "Join", :class => "btn btn-large btn-primary" %>
+      </div>
+    <% end %>
+    <%= link_to "Forgot your password?", new_user_password_path %>
+  </div>
+

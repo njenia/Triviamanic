@@ -1,3 +1,29 @@
 // Place all the styles related to the Quizzes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.quiz-table-category-header {
+    text-size: 20px;
+  }
+
+  .quiz-table-category-column {
+    float: left;
+    width: 20%;
+    text-align: center;
+  }
+
+  .quiz-table-question {
+    outline: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    height: 70px;
+    background: #A3FFA3a;
+    cursor: move;
+  }
+
+  .quiz-table-add-question {
+    margin: 5px;
+    outline: 1px dashed black;
+    background: #78FF52;
+  }
+

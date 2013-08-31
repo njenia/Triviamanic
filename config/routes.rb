@@ -1,5 +1,9 @@
 Triviamanic::Application.routes.draw do
 
+  # devise_for :users, :controllers => { :registrations => "Registrations", :sessions => "devise/sessions" } do
+  #  resources :quizzes
+  #end
+
   devise_for :users do
     resources :quizzes
   end
