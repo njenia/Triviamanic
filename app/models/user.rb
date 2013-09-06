@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username
 
   has_many :quizzes
+  has_many :player_group_users
+  has_many :game_player_groups, :through => :player_group_users
 
-  def questions
-    []
-  end
 end
 

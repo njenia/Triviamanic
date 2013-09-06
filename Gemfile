@@ -21,12 +21,23 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'faker'
+  gem 'populator'
+end
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'knockout-rails'
 
 gem "paperclip", "~> 3.0"
+
+gem 'simple_form'
+
+gem 'client_side_validations'
+
+gem 'client_side_validations-simple_form'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

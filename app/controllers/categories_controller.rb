@@ -40,17 +40,13 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(:name => params[:category], :quiz_id => params[:quiz_id])
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.js
-      else
-        format.html { render action: "new" }
-        format.js
-      end
+    @category = Category.create(:name => params[:category], :quiz_id => params[:quiz_id])
+    if params[:category].empty?
+      puts 'empty category NAME'
+      flash[:failure] = 'Please specify category name'
     end
+
+    redirect_to :back
   end
 
   # PUT /categories/1

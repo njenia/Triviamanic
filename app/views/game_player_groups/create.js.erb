@@ -1,0 +1,5 @@
+var group_players_input = '<%= text_field_tag "player-group-users-tokens-" + group.id.to_s, nil,
+       "data-pre" => group.users.select("users.id, username").map { |user| {:id => user.id, :name => user.username} }.to_json,
+       "data-game-player-group-id" => group.id %>';
+$('#group-table').append(group_players_input);
+

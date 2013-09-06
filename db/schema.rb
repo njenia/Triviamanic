@@ -21,26 +21,26 @@ ActiveRecord::Schema.define(:version => 20130831093801) do
   end
 
   create_table "game_player_groups", :force => true do |t|
-    t.integer  "quiz_id"
-    t.integer  "player_group_id"
+    t.integer  "game_id"
     t.integer  "score"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "games", :force => true do |t|
     t.integer  "quiz_id"
     t.boolean  "complete"
     t.integer  "winner_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "group_id_in_turn"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "player_group_users", :force => true do |t|
-    t.integer  "player_group_id"
+    t.integer  "game_player_group_id"
     t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "question_images", :force => true do |t|

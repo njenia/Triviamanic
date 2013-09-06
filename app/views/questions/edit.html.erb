@@ -1,14 +1,11 @@
 <p><%= link_to "quiz #" + @category.quiz.id.to_s, edit_quiz_path(@category.quiz) %> > <%= @category.name  %></p>
 <h2>Edit question #<%= @question.id %></h2>
 
-<%= form_for([@category, @question], method: 'PUT') do |f| %>
-    <%= f.submit "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
+<%= simple_form_for([@category, @question], method: 'PUT', :validate => true) do |f| %>
+    <%= f.button :submit, "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
     <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <%= f.label :instructions %>
-      <%= f.text_area :instructions, :style => 'width: 400px; height: 100px;' %>
-      <%= f.label :time_limit %>
+      <%= f.input :title, :input_html => { :style => 'width: 40%' } %>
+      <%= f.input :instructions, :as => 'text', :input_html => { :style => 'width: 40%', :rows => 5 } %>
       <%= image_tag 'clock.png' %>
       <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
     </p>

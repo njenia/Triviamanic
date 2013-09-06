@@ -8,8 +8,11 @@ Triviamanic::Application.routes.draw do
     resources :quizzes
   end
 
+  get '/users', to: 'users#index'
+
   resources :quizzes do
     resources :categories
+    resources :games
   end
 
   resources :categories do
@@ -19,13 +22,21 @@ Triviamanic::Application.routes.draw do
     end
   end
 
-  resources :games
+  resources :games do
+    resources :game_player_groups
+  end
 
-  resources :game_player_groups
+  resources :game_player_groups do
+    resources :player_group_users, :only => [:create]
+  end
 
-  resources :player_group_users
+  delete '/game_player_groups/:game_player_group_id/users/:user_id',
+    :to => 'player_group_users#destroy'
 
   #resources :sessions, only: [:new, :create, :destroy]
+
+  get '/games/:game_id/start', to: 'games#start'
+  get '/games/:game_id/game_board', to: 'games#board'
 
   resources :question_images
 

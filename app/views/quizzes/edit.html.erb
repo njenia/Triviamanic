@@ -1,7 +1,7 @@
 <h2>Editing quiz #<%= @quiz.id %></h2>
 
-<%= form_tag quiz_categories_path(@quiz), :method => 'post', :remote => true do %>
-  <%= text_field_tag 'category', nil, :placeholder => 'Category' %>
+<%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
+  <%= text_field_tag 'category', nil, :placeholder => 'Category', :id => 'new-category-name' %>
   <%= submit_tag 'Add' %>
 <% end %>
 
@@ -11,7 +11,7 @@
     <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
     <ul class="no-bullets-ul sortable-questions">
       <% cat.questions.order("points ASC").each do |question| %>
-        <li class="quiz-table-question" data-question-id='<%= question.id %>'>
+        <li class="quiz-table-question movable" data-question-id='<%= question.id %>'>
           <div class="question-points"><%= question.points %></div>
           <div><%= ((question.title.nil? or question.title.empty?) ?
                      "Question #" + question.id.to_s : question.title) %></div>

@@ -17,5 +17,7 @@
 //= require knockout
 //= require knockout-sortable
 //= require bootstrap
+//= require rails.validations
+//= require rails.validations.simple_form
 //= require_tree .
 

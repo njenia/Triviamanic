@@ -18,6 +18,7 @@
             <li class="span2">
               <div>Quiz #<%= quiz.id %></div>
               <div><a href="<%= edit_quiz_path(quiz) %>">edit</a></div>
+            <div><a href="<%= new_quiz_game_path(quiz) %>">play!</a></div>
             </li>
         <% end %>
       </ul>

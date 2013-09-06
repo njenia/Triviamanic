@@ -4,8 +4,10 @@ class CreateGames < ActiveRecord::Migration
       t.integer :quiz_id
       t.boolean :complete
       t.integer :winner_id
+      t.integer :group_id_in_turn
 
       t.timestamps
     end
   end
 end
+

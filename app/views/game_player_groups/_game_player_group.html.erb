@@ -1,0 +1,8 @@
+<div class="span2">
+  <div>
+    <%= form_tag player_group_users_path(group), :remote => true, :method => :post do %>
+      <%= text_field :player, "player" %>
+    <% end %>
+  </div>
+</div>
+

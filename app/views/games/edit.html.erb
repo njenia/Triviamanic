@@ -1,0 +1,24 @@
+<h2>New game for quiz #<%= @game.quiz.id %></h2>
+
+<div class="pull-right">
+  <%= link_to "Start game", "/games/#{@game.id}/start", :method => "get",
+        :class => 'btn btn-large btn-primary' %>
+</div>
+
+<%= form_tag game_game_player_groups_path(@game), :method => 'post', :id => 'player-group-form' do %>
+  <%= submit_tag 'Add group' %>
+<% end %>
+
+<ul class="group-list no-bullets-ul" id="group-table">
+<% @game.game_player_groups.each do |group| %>
+  <div class="game-table-group" data-group-id="<%= group.id %>">
+    <div class="quiz-table-category-header"><h3>group <%= group.id %></h3></div>
+    <div>
+      <%= text_field_tag "player-group-users-tokens-" + group.id.to_s, nil,
+       "data-pre" => group.users.select("users.id, username").map { |user| {:id => user.id, :name => user.username} }.to_json,
+       "data-game-player-group-id" => group.id %>
+    </div>
+  </div>
+<% end %>
+</ul>
+

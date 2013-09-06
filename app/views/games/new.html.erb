@@ -1,0 +1,14 @@
+<h2>New game for quiz #<%= @game.quiz.id %></h2>
+
+<%= form_tag quiz_games_path(@game.quiz) do %>
+<div>Choose groups:</div>
+<div class="span2">
+  <div>
+    <%= text_field_tag "player1" %>
+  </div>
+  <div class="bordered-box">
+    <%= link_to "+ Add", "#", :onclick => "$(this).before('ads')" %>
+  </div>
+</div>
+<% end %>
+

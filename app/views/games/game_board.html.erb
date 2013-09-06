@@ -1,0 +1,27 @@
+<div class="centerilized">
+  <% @game.game_player_groups.each do |group| %>
+    <span class="centerilized-box">
+      <% if @game.group_id_in_turn == group.id %>
+        <span class="group-in-turn"><%= group.users.first.username %>, ...</span>
+      <% else %>
+        <span><%= group.users.first.username %>, ...</span>
+      <% end %>
+    </span>
+  <% end %>
+</div>
+
+<div class="centerilized quiz-table" id="quiz-table">
+<% @game.quiz.categories.each do |cat| %>
+  <div class="quiz-table-category-column" data-category-id="<%= cat.id %>">
+    <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
+    <ul class="no-bullets-ul">
+      <% cat.questions.order("points ASC").each do |question| %>
+        <li class="quiz-table-question" data-question-id='<%= question.id %>'>
+          <div class="game-question-points"><%= link_to question.points, "/games/#{@game.id}/#{question.points}" %></div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+</div>
+

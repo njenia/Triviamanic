@@ -22,5 +22,12 @@ $(function() {
         }
     });
 
+    $('#category-form').submit(function() {
+       if ($('#new-category-name')[0].value == '') {
+           alert('Please specify category name');
+           return false;
+       }
+    });
+
 });
 
