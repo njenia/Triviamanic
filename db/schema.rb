@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130831093801) do
     t.boolean  "complete"
     t.integer  "winner_id"
     t.integer  "group_id_in_turn"
+    t.string   "questions_played"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

@@ -1,7 +1,7 @@
 <h2>New game for quiz #<%= @game.quiz.id %></h2>
 
 <div class="pull-right">
-  <%= link_to "Start game", "/games/#{@game.id}/start", :method => "get",
+  <%= link_to "Start game", game_path(@game), :method => "get",
         :class => 'btn btn-large btn-primary' %>
 </div>
 

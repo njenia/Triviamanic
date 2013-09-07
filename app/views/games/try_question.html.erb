@@ -1,0 +1,29 @@
+<h2><%= @category.name %> for <%= @question.points %> points</h2>
+
+<div>
+  <%= @question.title %>
+</div>
+
+<div class="pull-right">
+<div>
+<%= link_to "Solved",
+      solved_question_path(@game, @category, @question, :points => @question.points),
+      :method => "put",
+      :class => 'btn-solved btn btn-large btn-success' %>
+</div>
+<div>
+<%= link_to "Failed",
+  solved_question_path(@game, @category, @question, :points => 0),
+  :method => "put",
+  :class => 'btn btn-large btn-danger' %>
+</div>
+</div>
+
+<ul id="question-img-container" class="no-bullets-ul">
+    <% @question.question_images.each do |question_image| %>
+      <li style="display: inline">
+        <%= image_tag question_image.image.url, :class => 'question-image' %>
+      </li>
+    <% end %>
+</ul>
+

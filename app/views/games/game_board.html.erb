@@ -1,11 +1,8 @@
 <div class="centerilized">
   <% @game.game_player_groups.each do |group| %>
     <span class="centerilized-box">
-      <% if @game.group_id_in_turn == group.id %>
-        <span class="group-in-turn"><%= group.users.first.username %>, ...</span>
-      <% else %>
-        <span><%= group.users.first.username %>, ...</span>
-      <% end %>
+      <span class="<%= (@game.group_id_in_turn == group.id ? 'group-in-turn' : '') %>"><%= group.users.first.username %>, ...</span>
+      <span><%= group.score %></span>
     </span>
   <% end %>
 </div>
@@ -16,9 +13,17 @@
     <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
     <ul class="no-bullets-ul">
       <% cat.questions.order("points ASC").each do |question| %>
-        <li class="quiz-table-question" data-question-id='<%= question.id %>'>
-          <div class="game-question-points"><%= link_to question.points, "/games/#{@game.id}/#{question.points}" %></div>
-        </li>
+        <% if @game.was_question_played? question.id %>
+            <li class="quiz-table-question question-played" data-question-id='<%= question.id %>'>
+              <%= question.points %>
+            </li>
+        <% else %>
+          <a href="/games/<%= @game.id %>/categories/<%= question.category.id %>/questions/<%= question.id %>" style="display: block;">
+            <li class="quiz-table-question question-not-played" data-question-id='<%= question.id %>'>
+              <%= question.points %>
+            </li>
+          </a>
+        <% end %>
       <% end %>
     </ul>
   </div>

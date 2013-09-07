@@ -5,6 +5,7 @@ class CreateGames < ActiveRecord::Migration
       t.boolean :complete
       t.integer :winner_id
       t.integer :group_id_in_turn
+      t.string  :questions_played
 
       t.timestamps
     end

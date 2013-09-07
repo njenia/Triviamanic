@@ -2,12 +2,9 @@
     <h2>Welcome, <%= current_user.username %></h2>
 
 
-    <div class="pull-right"><%= link_to "Add a quiz",
+    <div class="pull-right"><%= link_to "Create a quiz",
                                           new_quiz_path,
                                           :method => "get",
-                                          :form => {
-                                            :user_id => current_user.id
-                                          },
                                           :class => 'btn btn-large btn-primary' %>
     </div>
 
@@ -23,8 +20,20 @@
         <% end %>
       </ul>
     </div>
+
+    <h3>Recent games</h3>
+    <div class="container">
+      <ul class="thumbnails">
+        <% user_games.each do |game| %>
+            <li class="span2">
+              <div>Game #<%= game.id %> <%= ((game.complete?) ? "" : "(not complete)") %></div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
 <% else %>
     <h1>Welcome, stranger</h1>
 
+    <h4>Why don't you <%= link_to 'sign up', new_user_registration_path %>?</h4>
 <% end %>
 

@@ -33,10 +33,10 @@ Triviamanic::Application.routes.draw do
   delete '/game_player_groups/:game_player_group_id/users/:user_id',
     :to => 'player_group_users#destroy'
 
-  #resources :sessions, only: [:new, :create, :destroy]
-
-  get '/games/:game_id/start', to: 'games#start'
-  get '/games/:game_id/game_board', to: 'games#board'
+  get '/games/:game_id/categories/:category_id/questions/:question_id',
+    to: 'games#try_question'
+  put '/games/:game_id/categories/:category_id/questions/:question_id',
+    to: 'games#solved_question', as: :solved_question
 
   resources :question_images
 
