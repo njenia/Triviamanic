@@ -4,7 +4,7 @@ $(function() {
     prePopulate: $(this).data("pre"),
     preventDuplicates: true,
     theme: "facebook",
-    minChars: 3,
+    minChars: 2,
     hintText: "Search for players...",
     resultsLimit: 10,
     onAdd: function(player) {

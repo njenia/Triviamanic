@@ -55,11 +55,10 @@ ActiveRecord::Schema.define(:version => 20130831093801) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "instructions"
+    t.string   "question"
     t.integer  "category_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "points"
     t.integer  "time_limit"
   end

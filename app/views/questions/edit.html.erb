@@ -4,8 +4,7 @@
 <%= simple_form_for([@category, @question], method: 'PUT', :validate => true) do |f| %>
     <%= f.button :submit, "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
     <p>
-      <%= f.input :title, :input_html => { :style => 'width: 40%' } %>
-      <%= f.input :instructions, :as => 'text', :input_html => { :style => 'width: 40%', :rows => 5 } %>
+      <%= f.input :question, :as => 'text', :input_html => { :style => 'width: 40%', :rows => 3 } %>
       <%= image_tag 'clock.png' %>
       <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
     </p>

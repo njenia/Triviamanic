@@ -1,22 +1,61 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    //var count = <%= @question.time_limit %>;
+    var count = 13;
+    var time_up = false;
+    var timer = $.timer(function() {
+      if (count <= 0 && time_up == false) {
+        alert("Time is up");
+        time_up = true;
+        $("#solved-button").data("href", this.attr("href")).attr("disabled", true).attr("href", "");
+        $("#solved-button").on("click", function(event){
+          if ($(this).attr('disabled') != undefined) {
+              e.preventDefault();
+         }
+});
+      }
+      if (count <= 15) {
+        $('#timer').addClass('timer-no-time-alert');
+      }
+	    $('#timer').html(formatTime(count--));
+    });
+    timer.set({ time : 1000, autostart : true });
+
+    function pad(number, length) {
+        var str = '' + number;
+        while (str.length < length) {str = '0' + str;}
+        return str;
+    }
+    function formatTime(time) {
+        var min = parseInt(time / 60),
+            sec = parseInt(time % 60);
+        return (min > 0 ? pad(min, 2) : "00") + ":" + (sec > 0 ? pad(sec, 2) : "00");
+    }
+  </script>
+<% end %>
+
 <h2><%= @category.name %> for <%= @question.points %> points</h2>
 
 <div>
-  <%= @question.title %>
+  <%= @question.question %>
 </div>
 
-<div class="pull-right">
-<div>
-<%= link_to "Solved",
-      solved_question_path(@game, @category, @question, :points => @question.points),
+  <div class="toolbox-panel">
+    <div>
+    <%= link_to "Solved",
+          solved_question_path(@game, @category, @question, :points => @question.points),
+          :id => "solved-button",
+          :method => "put",
+          :class => 'btn-solved btn btn-large btn-success' %>
+    </div>
+    <div>
+    <%= link_to "Failed",
+      solved_question_path(@game, @category, @question, :points => 0),
+      :id => "failed-button",
       :method => "put",
-      :class => 'btn-solved btn btn-large btn-success' %>
-</div>
-<div>
-<%= link_to "Failed",
-  solved_question_path(@game, @category, @question, :points => 0),
-  :method => "put",
-  :class => 'btn btn-large btn-danger' %>
-</div>
+      :class => 'btn btn-large btn-danger' %>
+    </div>
+    <div id="timer"></div>
 </div>
 
 <ul id="question-img-container" class="no-bullets-ul">
