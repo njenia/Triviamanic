@@ -1,2 +1,20 @@
 <h2>Results for game</h2>
 
+<% if @game_leader.count >= 1 %>
+<div>
+The winners are:
+  <% @game_leader.each do |leader_group| %>
+    <% leader_group.users.each do |user| %>
+      <div><%= user.username %></div>
+    <% end %>
+  <% end %>
+<% else %>
+  <% @game_leader.users.each do |user| %>
+    <div><%= user.username %></div>
+  <% end %>
+<% end %>
+<div>Final scores:</div>
+<% @game.game_player_groups.each do |group| %>
+  <div><%= group.id %>: <%= group.score %></div>
+<% end %>
+

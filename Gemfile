@@ -6,7 +6,6 @@ gem 'bootstrap-sass', '2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem "remotipart", "~> 1.0.5"
 
 # Gems used only for assets and not required
@@ -22,8 +21,13 @@ group :assets do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'faker'
   gem 'populator'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'jquery-rails'

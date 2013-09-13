@@ -18,5 +18,10 @@ class Game < ActiveRecord::Base
     self.group_id_in_turn = groups_ids[(groups_ids.index(self.group_id_in_turn) + 1) % groups_ids.length]
     self.save
   end
+
+  def game_leader
+    max_score = self.game_player_groups.maximum(:score)
+    self.game_player_groups.where(:score => max_score)
+  end
 end
 

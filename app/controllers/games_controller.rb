@@ -25,6 +25,9 @@ class GamesController < ApplicationController
   end
 
   def show_game_results
+    @game = Game.find(params[:id])
+    @game_leader = @game.game_leader
+
     render 'game_results'
   end
 

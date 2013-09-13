@@ -7,12 +7,7 @@
       if (count <= 0 && time_up == false) {
         alert("Time is up");
         time_up = true;
-        $("#solved-button").data("href", this.attr("href")).attr("disabled", true).attr("href", "");
-        $("#solved-button").on("click", function(event){
-          if ($(this).attr('disabled') != undefined) {
-              e.preventDefault();
-         }
-});
+        $("#solved-button").remove();
       }
       if (count <= 15) {
         $('#timer').addClass('timer-no-time-alert');
