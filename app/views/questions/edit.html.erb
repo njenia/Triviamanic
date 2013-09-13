@@ -1,13 +1,17 @@
 <p><%= link_to "quiz #" + @category.quiz.id.to_s, edit_quiz_path(@category.quiz) %> > <%= @category.name  %></p>
 <h2>Edit question #<%= @question.id %></h2>
 
-<%= simple_form_for([@category, @question], method: 'PUT', :validate => true) do |f| %>
-    <%= f.button :submit, "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
-    <p>
-      <%= f.input :question, :as => 'text', :input_html => { :style => 'width: 40%', :rows => 3 } %>
-      <%= image_tag 'clock.png' %>
-      <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
-    </p>
+<%= form_for [@category, @question], :method => :put do |f| %>
+    <%= f.submit "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
+      <div>
+        Question
+        <%= f.text_area :question, :id => 'question-text-area' %>
+      </div>
+      <div>
+        Time limit
+        <%= image_tag 'clock.png' %>
+        <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
+      </div>
 <% end %>
 
 <%= form_tag "/question_images", :multipart => true, :remote => true, :id => "file_form", :method => :post do %>

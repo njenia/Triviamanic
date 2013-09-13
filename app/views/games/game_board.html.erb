@@ -14,12 +14,12 @@
     <ul class="no-bullets-ul">
       <% cat.questions.order("points ASC").each do |question| %>
         <% if @game.was_question_played? question.id %>
-            <li class="quiz-table-question question-played" data-question-id='<%= question.id %>'>
+            <li class="question-played quiz-table-question quiz-item" data-question-id='<%= question.id %>'>
               <%= question.points %>
             </li>
         <% else %>
           <a href="/games/<%= @game.id %>/categories/<%= question.category.id %>/questions/<%= question.id %>" style="display: block;">
-            <li class="quiz-table-question question-not-played" data-question-id='<%= question.id %>'>
+            <li class="question-not-played quiz-table-question quiz-item" data-question-id='<%= question.id %>'>
               <%= question.points %>
             </li>
           </a>

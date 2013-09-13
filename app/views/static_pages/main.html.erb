@@ -10,7 +10,7 @@
     <div class="container">
       <ul class="thumbnails">
         <% current_user.quizzes.each do |quiz| %>
-            <li class="span2">
+            <li class="quiz-item span2">
               <div>Quiz #<%= quiz.id %></div>
               <div><a href="<%= edit_quiz_path(quiz) %>">edit</a></div>
             <div><a href="<%= new_quiz_game_path(quiz) %>">new game</a></div>
@@ -23,10 +23,10 @@
     <div class="container">
       <ul class="thumbnails">
         <% user_games.each do |game| %>
-            <li class="span2">
-              <div><%= "Game #" + game.id.to_s %></div>
-              <div><%= game.updated_at.strftime("%d/%m/%y") %></div>
-              <div><%= ((game.complete?) ? link_to("Results", game_path(game)) : link_to("Continue game", game_path(game))) %></div>
+            <li class="span12">
+              <%= game.updated_at.strftime("%d/%m/%y") %> |
+              <%= "Game #" + game.id.to_s %> |
+              <%= ((game.complete?) ? link_to("Results", game_path(game)) : link_to("Continue game", game_path(game))) %>
             </li>
         <% end %>
       </ul>
