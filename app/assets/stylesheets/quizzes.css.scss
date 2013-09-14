@@ -20,7 +20,9 @@
 
   .quiz-table-add-question {
     margin: 5px;
-    outline: 1px dashed black;
+    border: 1.5px dashed black;
     background: #78FF52;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
   }
 

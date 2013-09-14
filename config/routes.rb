@@ -38,7 +38,7 @@ Triviamanic::Application.routes.draw do
   put '/games/:game_id/categories/:category_id/questions/:question_id',
     to: 'games#solved_question', as: :solved_question
 
-  resources :question_images
+  resources :question_attachments
 
   root :to => 'static_pages#main'
 

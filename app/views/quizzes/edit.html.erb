@@ -9,9 +9,9 @@
 <% @quiz.categories.each do |cat| %>
   <div class="quiz-table-category-column" data-category-id="<%= cat.id %>">
     <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
-    <ul class="no-bullets-ul sortable-questions">
+    <ul class="quiz-item-container block-flow no-bullets-ul sortable-questions">
       <% cat.questions.order("points ASC").each do |question| %>
-        <li class="quiz-table-question movable" data-question-id='<%= question.id %>'>
+        <li class="quiz-item-inner block-flow movable" data-question-id='<%= question.id %>'>
           <div class="question-points"><%= question.points %></div>
           <div><%= ((question.question.nil? or question.question.empty?) ?
                      "Question #" + question.id.to_s : question.question) %></div>

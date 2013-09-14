@@ -11,15 +11,15 @@
 <% @game.quiz.categories.each do |cat| %>
   <div class="quiz-table-category-column" data-category-id="<%= cat.id %>">
     <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
-    <ul class="no-bullets-ul">
+    <ul class="no-bullets-ul quiz-item-container block-flow">
       <% cat.questions.order("points ASC").each do |question| %>
         <% if @game.was_question_played? question.id %>
-            <li class="question-played quiz-table-question quiz-item" data-question-id='<%= question.id %>'>
+            <li class="question-played quiz-table-question quiz-item-inner block-flow" data-question-id='<%= question.id %>'>
               <%= question.points %>
             </li>
         <% else %>
           <a href="/games/<%= @game.id %>/categories/<%= question.category.id %>/questions/<%= question.id %>" style="display: block;">
-            <li class="question-not-played quiz-table-question quiz-item" data-question-id='<%= question.id %>'>
+            <li class="question-not-played quiz-table-question quiz-item-inner block-flow" data-question-id='<%= question.id %>'>
               <%= question.points %>
             </li>
           </a>

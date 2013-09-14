@@ -54,10 +54,19 @@
 </div>
 
 <ul id="question-img-container" class="no-bullets-ul">
-    <% @question.question_images.each do |question_image| %>
+    <% @question.question_attachments.where("image_file_name is not null").each do |question_image| %>
       <li style="display: inline">
         <%= image_tag question_image.image.url, :class => 'question-image' %>
       </li>
     <% end %>
 </ul>
+
+<ul class="thumbnails">
+  <% @question.question_attachments.where("audio_file_name is not null").each do |question_audio| %>
+    <li>
+      <audio src="<%= question_audio.audio.url %>" controls="controls">
+        Your browser does not support boaudio
+      </audio>
+    </li>
+  <% end %>
 

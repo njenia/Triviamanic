@@ -1,0 +1,4 @@
+$('#question-img-container').append('<li style="display: inline"><%= escape_javascript(image_tag @question_image.image.url, :class => 'question-image') %></li>');
+
+$(".question-image").sortable();
+
