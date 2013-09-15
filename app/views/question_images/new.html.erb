@@ -1,4 +1,0 @@
-<%= form_for(@question_image, remote: true, method: :post, multipart: true, format: :js) do |f| %>
-    <%= f.file_field :image %>
-    <%= f.submit "add image" %>
-<% end %>
