@@ -38,6 +38,7 @@
 
  .movable {
      cursor: move;
+     &:hover { border: rgb(40, 167, 45) dashed 2px; }
  }
 
 .toolbox-panel {

@@ -1,7 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    //var count = <%= @question.time_limit %>;
-    var count = 13;
+    var count = <%= @question.time_limit %>;
     var time_up = false;
     var timer = $.timer(function() {
       if (count <= 0 && time_up == false) {
