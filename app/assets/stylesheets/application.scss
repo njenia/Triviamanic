@@ -89,3 +89,16 @@
     display: block !important;
 }
 
+
+.round-solid-box {
+    padding: 5px;
+    margin: 5px;
+    border: rgb(40, 167, 45) solid 2px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.inline-block-flow {
+    display: inline-block;
+}
+
