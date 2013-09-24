@@ -1,0 +1,43 @@
+#bootcamp-notice {
+    border: rgb(40, 167, 45) solid 2px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#bootcamp-notice-header {
+    background-repeat: repeat-x;
+    h4 {
+        background-repeat: repeat-x;
+        background-image: linear-gradient(#D4FDD2, #88EC6F);
+
+        margin: 0px;
+        padding-left: 5px;
+    }
+
+}
+
+.bootcamp-notice-step {
+    border: rgb(40, 167, 45) solid 2px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin-left: 5px;
+    height: 20px;
+}
+
+#bootcamp-notice-close-button {
+    float:right;
+    margin-top: 0px;
+    margin-right: 0px;
+    cursor:pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 30px;
+    background: #605F61;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 1px;
+    padding: 7px 4px;
+}
+

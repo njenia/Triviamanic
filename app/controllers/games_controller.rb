@@ -46,9 +46,14 @@ class GamesController < ApplicationController
     @game = Game.find(params[:game_id])
     @category = Category.find(params[:category_id])
     @question = Question.find(params[:question_id])
+    @question_played_first_time = false
+
+    @attached_image_files = @question.question_attachments.where("image_file_name is not null")
+    @attached_sound_files = @question.question_attachments.where("audio_file_name is not null")
 
     if not @game.was_question_played? @question.id
       @game.add_question_played @question.id
+      @question_played_first_time = true
     end
 
     render 'try_question'

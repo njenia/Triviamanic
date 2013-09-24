@@ -40,6 +40,8 @@ Triviamanic::Application.routes.draw do
 
   resources :question_attachments
 
+  put '/cancel_bootcamp_notice', :to => 'static_pages#cancel_bootcamp_notice'
+
   root :to => 'static_pages#main'
 
   # The priority is based upon order of creation:

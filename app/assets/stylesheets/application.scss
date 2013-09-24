@@ -48,8 +48,9 @@
     top: 40px;
     height: 100%;
     padding: 10px;
-    background-color: rgb(226, 220, 220);
+    background-color: #F7EFEF;
     text-align: center;
+    overflow: scroll;
 }
 
 .quiz-item-inner {
@@ -100,5 +101,10 @@
 
 .inline-block-flow {
     display: inline-block;
+}
+
+.btn-in-toolbox {
+    margin: 5px;
+    width: 50%;
 }
 

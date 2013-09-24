@@ -3,7 +3,7 @@
     <% @game.game_player_groups.each do |group| %>
       <div class="centerilized-box round-solid-box span2 <%= (@game.group_id_in_turn == group.id ? 'group-in-turn' : '') %>">
         <div>
-          <%= group.users.select(:username).map {|user| user.username}.join(',') %>
+          <%= group.users.select(:username).map {|user| user.username}.join(', ') %>
         </div>
         <div id="group-points"><%= group.score %></div>
       </div>

@@ -21,15 +21,7 @@
     <%= submit_tag "Add" %>
 <% end %>
 
-<ul id="question-img-container" class="no-bullets-ul">
-    <% @question.question_attachments.where("image_file_name is not null").each do |question_image| %>
-      <li style="display: inline">
-        <%= image_tag question_image.image.url, :class => 'question-image' %>
-      </li>
-    <% end %>
-</ul>
-
-<ul class="thumbnails">
+<ul id="question-audio-container" class="thumbnails">
   <% @question.question_attachments.where("audio_file_name is not null").each do |question_audio| %>
     <li>
       <audio src="<%= question_audio.audio.url %>" controls="controls">
@@ -37,5 +29,13 @@
       </audio>
     </li>
   <% end %>
+</ul>
+
+<ul id="question-img-container" class="no-bullets-ul">
+    <% @question.question_attachments.where("image_file_name is not null").each do |question_image| %>
+      <li style="display: inline">
+        <%= image_tag question_image.image.url, :class => 'question-image' %>
+      </li>
+    <% end %>
 </ul>
 

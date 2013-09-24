@@ -1,9 +1,4 @@
-<h2>Editing quiz #<%= @quiz.id %></h2>
-
-<%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
-  <%= text_field_tag 'category', nil, :placeholder => 'Category', :id => 'new-category-name' %>
-  <%= submit_tag 'Add' %>
-<% end %>
+<h2>Quiz #<%= @quiz.id %></h2>
 
 <div class="quiz-table" id="quiz-table">
 <% @quiz.categories.each do |cat| %>
@@ -14,16 +9,28 @@
         <li class="quiz-item-inner block-flow movable" data-question-id='<%= question.id %>'>
           <div class="question-points"><%= question.points %></div>
           <div><%= ((question.question.nil? or question.question.empty?) ?
-                     "Question #" + question.id.to_s : question.question) %></div>
-          <div><%= link_to "edit",
-                          edit_category_question_path(cat, question) %></div>
+                     "Question #" + question.id.to_s : truncate(question.question, :length => 30)) %></div>
+          <div>
+            <%= link_to "edit",
+                          edit_category_question_path(cat, question) %>
+            |
+            <%= link_to "delete",
+                          category_question_path(question.category, question),
+                          :method => :delete, :confirm => "Are you sure you want to delete the question?" %>
+          </div>
         </li>
       <% end %>
     </ul>
     <a href="<%= new_category_question_path(cat) %>" data-method="get"><div class="quiz-table-add-question">
-      + Add question
+      + Question
     </div></a>
   </div>
 <% end %>
+  <div class="quiz-table-category-column">
+    <%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
+      <%= text_field_tag 'category', nil, :placeholder => 'New Category', :id => 'new-category-name', :style => "margin: 10px;" %>
+      <%= submit_tag 'Add' %>
+    <% end %>
+  </div>
 </div>
 

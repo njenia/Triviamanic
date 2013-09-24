@@ -29,6 +29,11 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @category = Category.find(params[:category_id])
     @time_limits = [["10s", 10], ["30s", 30], ["1m", 60], ["3m", 180], ["5m", 300], ["10m", 600], ["No time limit", -1]]
+
+    if @category.quiz.user != current_user or @question.category != @category
+      flash[:failure] = "Access denied"
+      redirect_to root_path
+    end
   end
 
   def update
@@ -38,6 +43,14 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question saved"
     end
     redirect_to edit_quiz_path(question.category.quiz)
+  end
+
+  def destroy
+    question = Question.find(params[:id])
+    quiz = question.category. quiz
+    question.destroy
+
+    redirect_to edit_quiz_path(quiz)
   end
 end
 

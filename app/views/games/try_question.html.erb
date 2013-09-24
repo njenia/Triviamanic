@@ -1,71 +1,90 @@
-<% content_for :head do %>
-  <script type="text/javascript">
-    var count = <%= @question.time_limit %>;
-    var time_up = false;
-    var timer = $.timer(function() {
-      if (count <= 0 && time_up == false) {
-        alert("Time is up");
-        time_up = true;
-        $("#solved-button").remove();
-      }
-      if (count <= 15) {
-        $('#timer').addClass('timer-no-time-alert');
-      }
-	    $('#timer').html(formatTime(count--));
-    });
-    timer.set({ time : 1000, autostart : true });
+<% if @question_played_first_time %>
+  <% content_for :head do %>
+    <script type="text/javascript">
+      var count = <%= @question.time_limit %>;
+      var time_up = false;
+      var timer = $.timer(function() {
+        if (count <= 0 && time_up == false) {
+          alert("Time is up");
+          time_up = true;
+          $("#solved-button").remove();
+        }
+        if (count <= 15) {
+          $('#timer').addClass('timer-no-time-alert');
+        }
+	      $('#timer').html(formatTime(count--));
+      });
+      timer.set({ time : 1000, autostart : true });
 
-    function pad(number, length) {
-        var str = '' + number;
-        while (str.length < length) {str = '0' + str;}
-        return str;
-    }
-    function formatTime(time) {
-        var min = parseInt(time / 60),
-            sec = parseInt(time % 60);
-        return (min > 0 ? pad(min, 2) : "00") + ":" + (sec > 0 ? pad(sec, 2) : "00");
-    }
-  </script>
+      function pad(number, length) {
+          var str = '' + number;
+          while (str.length < length) {str = '0' + str;}
+          return str;
+      }
+      function formatTime(time) {
+          var min = parseInt(time / 60),
+              sec = parseInt(time % 60);
+          return (min > 0 ? pad(min, 2) : "00") + ":" + (sec > 0 ? pad(sec, 2) : "00");
+      }
+    </script>
+  <% end %>
 <% end %>
 
 <h2><%= @category.name %> for <%= @question.points %> points</h2>
 
-<div>
+<div class="question-display">
   <%= @question.question %>
 </div>
 
   <div class="toolbox-panel">
+    <% if @question_played_first_time %>
+      <div>
+      <%= link_to "Solved",
+            solved_question_path(@game, @category, @question, :points => @question.points),
+            :id => "solved-button",
+            :method => "put",
+            :class => 'btn btn-large btn-success btn-in-toolbox' %>
+      </div>
+      <div>
+      <%= link_to "Failed",
+        solved_question_path(@game, @category, @question, :points => 0),
+        :id => "failed-button",
+        :method => "put",
+        :class => 'btn btn-large btn-danger btn-in-toolbox' %>
+      </div>
+      <div class="gray-bordered-box">
+        <%= image_tag 'clock.png' %><div style="display: inline-block; vertical-align: middle;" id="timer"></div>
+      </div>
+    <% end %>
     <div>
-    <%= link_to "Solved",
-          solved_question_path(@game, @category, @question, :points => @question.points),
-          :id => "solved-button",
-          :method => "put",
-          :class => 'btn-solved btn btn-large btn-success' %>
+      <%= link_to "Back to board",
+        game_path(@game),
+        :id => "back-to-board-button",
+        :method => "get",
+        :class => 'btn btn-large btn-primary btn-in-toolbox',
+        :confirm => 'Are you sure you want to go back to the game board?' %>
     </div>
-    <div>
-    <%= link_to "Failed",
-      solved_question_path(@game, @category, @question, :points => 0),
-      :id => "failed-button",
-      :method => "put",
-      :class => 'btn btn-large btn-danger' %>
-    </div>
-    <div id="timer"></div>
 </div>
 
-<ul id="question-img-container" class="no-bullets-ul">
-    <% @question.question_attachments.where("image_file_name is not null").each do |question_image| %>
-      <li style="display: inline">
-        <%= image_tag question_image.image.url, :class => 'question-image' %>
+<% if not @attached_image_files.empty? %>
+  <ul id="game-question-img-container" class="no-bullets-ul">
+      <% @attached_image_files.each do |question_image| %>
+        <li style="display: inline">
+          <%= image_tag question_image.image.url, :class => 'question-image' %>
+        </li>
+      <% end %>
+  </ul>
+<% end %>
+
+<% if not @attached_sound_files.empty? %>
+  <ul class="thumbnails">
+    <% @attached_sound_files.each do |question_audio| %>
+      <li>
+        <audio src="<%= question_audio.audio.url %>" controls="controls">
+          Your browser does not support boaudio
+        </audio>
       </li>
     <% end %>
-</ul>
-
-<ul class="thumbnails">
-  <% @question.question_attachments.where("audio_file_name is not null").each do |question_audio| %>
-    <li>
-      <audio src="<%= question_audio.audio.url %>" controls="controls">
-        Your browser does not support boaudio
-      </audio>
-    </li>
-  <% end %>
+  </ul>
+<% end %>
 

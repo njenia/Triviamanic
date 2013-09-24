@@ -1,17 +1,43 @@
 <% if current_user %>
-    <div class="toolbox-panel">
-      <%= link_to "Create a quiz",
-                  new_quiz_path,
-                  :method => "get",
-                  :class => 'btn btn-large btn-primary' %>
+  <div class="toolbox-panel">
+    <%= link_to "Create a quiz",
+                new_quiz_path,
+                :method => "get",
+                :class => 'btn btn-large btn-primary' %>
+  </div>
+  <% if not current_user.bootcamp_notice_cancelled? %>
+    <div id="bootcamp-notice-container" class="row-fluid">
+      <div id="bootcamp-notice" class="span8 offset2 row-fluid">
+        <div id="bootcamp-notice-close-button">
+        x
+        </div>
+        <div id="bootcamp-notice-header" class="row-fluid">
+          <h4>New to Triviamanic?</h4>
+        </div>
+        <div id="bootcamp-notice-body" class="thumbnails row-fluid">
+          <div class="bootcamp-notice-step span4">
+            Create a quiz
+          </div>
+          <div class="bootcamp-notice-step span4">
+            Add categories and questions
+          </div>
+          <div class="bootcamp-notice-step span4">
+            Play with your friends
+          </div>
+        </div>
+      </div>
     </div>
+  <% end %>
 
+  <div class="row">
     <h3>Your quizzes (<%= current_user.quizzes.count %>)</h3>
     <div class="container">
       <ul class="thumbnails quiz-item-container">
         <% current_user.quizzes.each do |quiz| %>
             <li class="quiz-item-inner span2">
               <div>Quiz #<%= quiz.id %></div>
+              <div>Categories: <%= quiz.categories.map{|cat| cat.name}.join(', ') %></div>
+              <div>Games played: <%= quiz.games.count %></div>
               <div><a href="<%= edit_quiz_path(quiz) %>">edit</a> |
               <a href="<%= new_quiz_game_path(quiz) %>">new game</a></div>
             </li>
@@ -19,7 +45,7 @@
       </ul>
     </div>
 
-    <h3>Recent games</h3>
+    <h3>Your Recent games</h3>
     <div class="container">
       <ul class="thumbnails">
         <% user_games.each do |game| %>
@@ -31,6 +57,7 @@
         <% end %>
       </ul>
     </div>
+  </div>
 <% else %>
     <h1>Welcome, stranger</h1>
 

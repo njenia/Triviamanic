@@ -33,6 +33,11 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     @quiz = Quiz.find(params[:id])
+
+    if @quiz.user != current_user
+      flash[:failure] = "Access Denied"
+      redirect_to root_path
+    end
   end
 
   # POST /quizzes

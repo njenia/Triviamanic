@@ -1,4 +1,7 @@
-$('#question-img-container').append('<li style="display: inline"><%= escape_javascript(image_tag @question_image.image.url, :class => 'question-image') %></li>');
-
+<% if @attachment_type == :image %>
+  $('#question-img-container').append('<li style="display: inline"><%= escape_javascript(image_tag @question_attachment.image.url, :class => 'question-image') %></li>');
+<% elsif @attachment_type == :audio %>
+  $('question-audio-container').append('<li><audio src="<%= @question_attachment.audio.url %>" controls="controls">Your browser does not support audio</audio></li>')
+<% end %>
 $(".question-image").sortable();
 
