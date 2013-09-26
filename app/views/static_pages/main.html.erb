@@ -6,27 +6,7 @@
                 :class => 'btn btn-large btn-primary' %>
   </div>
   <% if not current_user.bootcamp_notice_cancelled? %>
-    <div id="bootcamp-notice-container" class="row-fluid">
-      <div id="bootcamp-notice" class="span8 offset2 row-fluid">
-        <div id="bootcamp-notice-close-button">
-        x
-        </div>
-        <div id="bootcamp-notice-header" class="row-fluid">
-          <h4>New to Triviamanic?</h4>
-        </div>
-        <div id="bootcamp-notice-body" class="thumbnails row-fluid">
-          <div class="bootcamp-notice-step span4">
-            Create a quiz
-          </div>
-          <div class="bootcamp-notice-step span4">
-            Add categories and questions
-          </div>
-          <div class="bootcamp-notice-step span4">
-            Play with your friends
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "_bootcamp_notice.html.erb", locals: {should_be_closable: true} %>
   <% end %>
 
   <div class="row">
@@ -62,5 +42,8 @@
     <h1>Welcome, stranger</h1>
 
     <h4>Why don't you <%= link_to 'sign up', new_user_registration_path %>?</h4>
+
+   <%= render :partial => "_bootcamp_notice.html.erb", locals: {should_be_closable: false} %>
+    </div>
 <% end %>
 

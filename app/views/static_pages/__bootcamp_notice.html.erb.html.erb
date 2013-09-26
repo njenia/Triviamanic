@@ -1,0 +1,39 @@
+<div id="bootcamp-notice-container" class="row-fluid">
+  <div id="bootcamp-notice" class="span8 offset2 row-fluid">
+    <% if should_be_closable %>
+      <div id="bootcamp-notice-close-button">
+      x
+      </div>
+    <% end %>
+    <div id="bootcamp-notice-header" class="row-fluid">
+      <h4>New to Triviamanic?</h4>
+    </div>
+    <div id="bootcamp-notice-body" class="thumbnails row-fluid">
+      <div class="bootcamp-notice-step span4">
+        <div>
+          <%= image_tag "bootcamp-notice-step1.png" %>
+        </div>
+        <div>
+          Create a quiz
+        </div>
+      </div>
+      <div class="bootcamp-notice-step span4">
+        <div>
+          <%= image_tag "bootcamp-notice-step2.png" %>
+        </div>
+        <div>
+          Add categories and questions
+        </div>
+      </div>
+      <div class="bootcamp-notice-step span4">
+        <div>
+          <%= image_tag "bootcamp-notice-step3.png" %>
+        </div>
+        <div>
+          Play with your friends
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
