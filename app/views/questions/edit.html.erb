@@ -2,21 +2,32 @@
 <h2>Edit question #<%= @question.id %></h2>
 
 <%= form_for [@category, @question], :method => :put do |f| %>
-    <%= f.submit "Save", class: "btn btn-large btn-primary pull-right", :style => "position: fixed; left: 92%" %>
+    <div class="toolbox-panel">
       <div>
-        Question
-        <%= f.text_area :question, :id => 'question-text-area' %>
+        <%= f.submit "Save", class: "btn btn-large btn-primary btn-in-toolbox" %>
       </div>
       <div>
-        Time limit
-        <%= image_tag 'clock.png' %>
-        <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
+        <%= link_to "Delete",
+                      category_question_path(@question.category, @question),
+                      :method => :delete,
+                      :class => "btn btn-large btn-danger btn-in-toolbox",
+                      :confirm => "Are you sure you want to delete the question?" %>
       </div>
+    </div>
+    <div>
+      Question
+      <%= f.text_area :question, :id => 'question-text-area' %>
+    </div>
+    <div>
+      Time limit
+      <%= image_tag 'clock.png' %>
+      <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>
+    </div>
 <% end %>
 
 <%= form_tag "/question_attachments", :multipart => true, :remote => true, :id => "file_form", :method => :post do %>
     <%= hidden_field_tag :question_id, @question.id %>
-    <strong>Add images or sound files to question:</strong>
+    <strong>Add images or audio files to question:</strong>
     <%= file_field_tag :attachment, :id => "attachment_upload" %>
     <%= submit_tag "Add" %>
 <% end %>
