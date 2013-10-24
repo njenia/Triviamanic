@@ -13,9 +13,18 @@
 
 .question-image {
     height: 100%;
+    z-index: 2;
 }
 
 #question-text-area {
     width: 40%;
+}
+
+.delete-image-btn {
+    position: relative;
+    display: inline;
+    top: -20em;
+    right: 15px;
+    z-index: 1;
 }
 

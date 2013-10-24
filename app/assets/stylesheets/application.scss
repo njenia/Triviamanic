@@ -13,6 +13,24 @@
  *= require_tree .
  */
 
+#navbar-inner {
+    background: green;
+    background-image: linear-gradient(to bottom, #31592D, #31592D);
+    a {
+        color: #DEDEDE;
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+#logo {
+    color: #B7FFB0;
+    &:hover {
+        color: white;
+    }
+}
+
  .no-bullets-ul {
      list-style-type: none;
      padding: 0;
@@ -55,7 +73,7 @@
 
 .quiz-item-inner {
     top: 50%;
-    background-color: rgba(0, 255, 0, 0.22);
+    background-color: rgba(0, 255, 0, 0.5);
     padding: 5px;
     margin: 5px;
     border: rgb(40, 167, 45) solid 2px;
@@ -64,6 +82,8 @@
 
     display: inline-block;
     vertical-align: middle;
+
+    color: #454545;
   /*width: 300px;
   padding: 10px 15px;
   border: #a0a0a0 solid 1px;

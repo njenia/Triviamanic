@@ -5,6 +5,7 @@
     <div class="row">
       <% cat_row.each do |cat| %>
         <div class="quiz-table-category-column span2" data-category-id="<%= cat.id %>">
+          <div class="delete-category-btn"><%= link_to "x", quiz_category_path(@quiz, cat), :method => :delete %></div>
           <div class="quiz-table-category-header"><h3><%= cat.name %></h3></div>
           <ul class="quiz-item-container block-flow no-bullets-ul sortable-questions">
             <% cat.questions.order("points ASC").each do |question| %>

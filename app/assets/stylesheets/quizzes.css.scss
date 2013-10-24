@@ -2,14 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.delete-category-btn {
+    position: absolute;
+    display: inline;
+    right: 10px;
+    top: 5px;
+    a {
+        color: #B0B0B0;
+        &:hover {
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
+
 .quiz-table-category-header {
     text-size: 20px;
   }
 
   .quiz-table-category-column {
+    position: relative;
     float: left;
     width: 20%;
     text-align: center;
+    background: #EDFFE7;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 5px;
+    height: 100%;
   }
 
   .quiz-table-question {
@@ -21,8 +41,11 @@
   .quiz-table-add-question {
     margin: 5px;
     border: 1.5px dashed black;
-    background: #78FF52;
+    background: #A3FF89;
     border-radius: 15px;
     -moz-border-radius: 15px;
+    &:hover {
+        background: #92FF74;
+    }
   }
 
