@@ -30,6 +30,7 @@
         </div>
 
       <% end %>
+
       <% if row_index == (@quiz.categories.count / 4.0).ceil - 1 %>
         <div id="add-category-col" class="quiz-table-category-column span2">
           <%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
