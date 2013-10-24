@@ -31,7 +31,7 @@
 
       <% end %>
       <% if row_index == (@quiz.categories.count / 4.0).ceil - 1 %>
-        <div class="quiz-table-category-column span2">
+        <div id="add-category-col" class="quiz-table-category-column span2">
           <%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
             <%= text_field_tag 'category', nil, :placeholder => 'New Category', :id => 'new-category-name', :style => "margin: 10px;" %>
             <%= submit_tag 'Add' %>
@@ -39,6 +39,14 @@
         </div>
       <% end %>
     </div>
+  <% end %>
+  <% if @quiz.categories.count == 0 %>
+        <div id="add-category-col" class="quiz-table-category-column span2">
+          <%= form_tag quiz_categories_path(@quiz), :method => 'post', :id => 'category-form' do %>
+            <%= text_field_tag 'category', nil, :placeholder => 'New Category', :id => 'new-category-name', :style => "margin: 10px;" %>
+            <%= submit_tag 'Add' %>
+          <% end %>
+        </div>
   <% end %>
 </div>
 
