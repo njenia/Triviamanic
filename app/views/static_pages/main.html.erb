@@ -15,11 +15,14 @@
       <ul class="thumbnails quiz-item-container">
         <% current_user.quizzes.each do |quiz| %>
             <li class="quiz-item-inner span2">
-              <div>Quiz #<%= quiz.id %></div>
+              <div class="quiz-item-title">Quiz #<%= quiz.id %></div>
               <div>Categories: <%= quiz.categories.map{|cat| cat.name}.join(', ') %></div>
               <div>Games played: <%= quiz.games.count %></div>
-              <div><a href="<%= edit_quiz_path(quiz) %>">edit</a> |
-              <a href="<%= new_quiz_game_path(quiz) %>">new game</a></div>
+              <div>
+                <%= link_to "new game", new_quiz_game_path(quiz) %> |
+                <%= link_to "edit", edit_quiz_path(quiz) %> |
+                <%= link_to "delete", quiz_path(quiz), :method => :delete %>
+              </div>
             </li>
         <% end %>
       </ul>
