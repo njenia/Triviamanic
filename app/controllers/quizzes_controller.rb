@@ -36,7 +36,7 @@ class QuizzesController < ApplicationController
 
     if @quiz.user != current_user
       flash[:failure] = "Access Denied"
-      redirect_to root_path
+      redirect_to root_pathdel
     end
   end
 
@@ -79,7 +79,7 @@ class QuizzesController < ApplicationController
     @quiz.destroy
 
     respond_to do |format|
-      format.html { redirect_to quizzes_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
