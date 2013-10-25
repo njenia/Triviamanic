@@ -21,7 +21,7 @@
               <div>
                 <%= link_to "new game", new_quiz_game_path(quiz) %> |
                 <%= link_to "edit", edit_quiz_path(quiz) %> |
-                <%= link_to "delete", quiz_path(quiz), :method => :delete %>
+                <%= link_to "delete", quiz_path(quiz), :method => :delete, :confirm => "Really delete quiz?" %>
               </div>
             </li>
         <% end %>
