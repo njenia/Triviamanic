@@ -19,6 +19,10 @@
       <%= f.text_area :question, :id => 'question-text-area' %>
     </div>
     <div>
+      Solution
+      <%= f.text_area :solution, :id => 'solution-text-area' %>
+    </div>
+    <div>
       Time limit
       <%= image_tag 'clock.png' %>
       <%= f.select :time_limit, options_for_select(@time_limits, @question.time_limit) %>

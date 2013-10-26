@@ -3,16 +3,19 @@
     <script type="text/javascript">
       var count = <%= @question.time_limit %>;
       var time_up = false;
+      var time_running = true;
       var timer = $.timer(function() {
-        if (count <= 0 && time_up == false) {
-          alert("Time is up");
-          time_up = true;
-          $("#solved-button").remove();
-        }
-        if (count <= 15) {
-          $('#timer').addClass('timer-no-time-alert');
-        }
-	      $('#timer').html(formatTime(count--));
+        if (time_running) {
+          if (count <= 0 && time_up == false) {
+            alert("Time is up");
+            time_up = true;
+            $("#solved-button").remove();
+          }
+          if (count <= 15) {
+            $('#timer').addClass('timer-no-time-alert');
+          }
+	        $('#timer').html(formatTime(count--));
+	      }
       });
       timer.set({ time : 1000, autostart : true });
 
@@ -21,41 +24,63 @@
           while (str.length < length) {str = '0' + str;}
           return str;
       }
+
       function formatTime(time) {
           var min = parseInt(time / 60),
               sec = parseInt(time % 60);
           return (min > 0 ? pad(min, 2) : "00") + ":" + (sec > 0 ? pad(sec, 2) : "00");
       }
+
+      function toggleTimer() {
+        time_running = !time_running;
+        var newImgSrc = '/assets/' + (time_running ? 'pause.png' : 'play.png');
+        $('#toggle-timer-button').attr('src', newImgSrc);
+      }
     </script>
   <% end %>
 <% end %>
-
+<% content_for :head do %>
+  <script type="text/javascript">
+      $(function() {
+        $('#solution-dialog').dialog({
+          autoOpen: false,
+          modal: true,
+          title: 'Solution'
+        });
+        $('#solution-button').click(function() {
+          $('#solution-dialog').dialog("open");
+        });
+      });
+  </script>
+<% end %>
 <h2><%= @category.name %> for <%= @question.points %> points</h2>
 
 <div class="question-display">
   <%= @question.question %>
 </div>
 
-  <div class="toolbox-panel">
-    <% if @question_played_first_time %>
-      <div>
+<div class="toolbox-panel">
+  <% if @question_played_first_time %>
+    <div>
       <%= link_to "Solved",
             solved_question_path(@game, @category, @question, :points => @question.points),
             :id => "solved-button",
             :method => "put",
             :class => 'btn btn-large btn-success btn-in-toolbox' %>
-      </div>
-      <div>
+    </div>
+    <div>
       <%= link_to "Failed",
         solved_question_path(@game, @category, @question, :points => 0),
         :id => "failed-button",
         :method => "put",
         :class => 'btn btn-large btn-danger btn-in-toolbox' %>
-      </div>
-      <div class="gray-bordered-box">
-        <%= image_tag 'clock.png' %><div style="display: inline-block; vertical-align: middle;" id="timer"></div>
-      </div>
-    <% end %>
+    </div>
+    <div class="gray-bordered-box">
+      <%= image_tag 'clock.png' %>
+      <div style="display: inline-block; vertical-align: middle;" id="timer"></div>
+      <%= image_tag 'pause.png', :id => 'toggle-timer-button', :onclick => 'toggleTimer();' %>
+    </div>
+  <% else %>
     <div>
       <%= link_to "Back to board",
         game_path(@game),
@@ -64,6 +89,20 @@
         :class => 'btn btn-large btn-primary btn-in-toolbox',
         :confirm => 'Are you sure you want to go back to the game board?' %>
     </div>
+  <% end %>
+
+    <div>
+      <%= link_to "Solution",
+        "#",
+        :id => "solution-button",
+        :class => 'btn btn-large btn-primary btn-in-toolbox' %>
+    </div>
+</div>
+
+<div id="solution-dialog">
+  <p>
+    <%= @question.solution %>
+  </p>
 </div>
 
 <% if not @attached_image_files.empty? %>
