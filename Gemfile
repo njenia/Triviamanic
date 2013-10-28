@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.0.0'
+# ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.1'
@@ -30,7 +30,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql'
+  gem 'mysql2'
   gem 'rails_12factor'
   gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
