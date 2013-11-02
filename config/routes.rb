@@ -18,7 +18,7 @@ Triviamanic::Application.routes.draw do
   resources :categories do
     resources :questions
     member do
-      put 'reorder'
+      get 'reorder', as: :reorder
     end
   end
 

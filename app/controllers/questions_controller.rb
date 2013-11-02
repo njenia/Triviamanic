@@ -47,10 +47,11 @@ class QuestionsController < ApplicationController
 
   def destroy
     question = Question.find(params[:id])
-    quiz = question.category. quiz
+    quiz = question.category.quiz
     question.destroy
 
-    redirect_to edit_quiz_path(quiz)
+    #redirect_to edit_quiz_path(quiz)
+    redirect_to reorder_category_path(question.category.id)
   end
 end
 

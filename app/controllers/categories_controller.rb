@@ -76,13 +76,14 @@ class CategoriesController < ApplicationController
 
   def reorder
     points = 100
-    params[:question_ids].each do |question_id|
-      Question.find(question_id).update_attributes(:points => points)
+    category = Category.find(params[:id])
+    category.questions.each do |question|
+      question.update_attributes(:points => points)
       points += 100
     end
 
     respond_to do |format|
-      format.html {  }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
